@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { NavigationDrawer } from 'react-md'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import logo from './logo.svg'
-
+import Kids from './components/kids'
+import Kid from './components/kid'
 import './App.css'
 
 class App extends Component {
@@ -26,20 +28,12 @@ class App extends Component {
 
   render () {
     return (
-      <NavigationDrawer
-        drawerTitle='react-md with CRA'
-        toolbarTitle='Welcome to react-md'
-      >
-        <div className='App'>
-          <header className='App-header'>
-            <img src={logo} className='App-logo' alt='logo' />
-            <h1 className='App-title'>Welcome to React</h1>
-          </header>
-          <p className='App-intro'>
-            {this.state.response}
-          </p>
+      <Router>
+        <div>
+          <Route exact path='/' component={Kids} />
+          <Route path='/kid/:id' component={Kid} />
         </div>
-      </NavigationDrawer>
+      </Router>
     )
   }
 }
