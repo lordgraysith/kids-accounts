@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { NavigationDrawer } from 'react-md'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import logo from './logo.svg'
 import Kids from './components/kids'
 import Kid from './components/kid'
 import './App.css'
