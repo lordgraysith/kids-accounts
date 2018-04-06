@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "node server.js",
+    "server": "supervisor server/index.js",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "deploy": "now --docker --public"
   },
@@ -12,6 +12,10 @@
   "dependencies": {
     "concurrently": "^3.5.1",
     "config": "^1.30.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
   }
 }
