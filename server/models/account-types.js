@@ -17,5 +17,6 @@ async function getAccountTypeById (id) {
 }
 
 module.exports = {
-  getAccountTypeById
+  getAccountTypeById,
+  accountTypes
 }
