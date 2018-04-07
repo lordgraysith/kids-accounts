@@ -2,7 +2,8 @@ const { Pool } = require('pg')
 const config = require('config')
 
 const pool = new Pool({
-  connectionString: config.pg.connectionString
+  connectionString: config.pg.connectionString,
+  max: 2
 })
 
 // console.log('conString', config.pg.connectionString)
