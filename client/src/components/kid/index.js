@@ -48,12 +48,13 @@ class Kid extends Component {
     const { mainAccount } = await makePayment(kidId, paymentAmount, description)
     this.setState({
       kid: Object.assign({}, this.state.kid, { mainAccount }),
-      loading: false
+      loading: false,
+      amount: undefined
     })
   }
 
   unconfirm () {
-    this.setState({ makingPayment: false })
+    this.setState({ makingPayment: false, amount: undefined })
   }
 
   descriptionChange (value) {
@@ -94,39 +95,63 @@ class Kid extends Component {
         {loading && <CircularProgress id='loading' />}
         {!loading &&
           <div>
-            <Button id='back' flat onClick={() => this.props.history.push('/')}>
+            <Button id='back' icon onClick={() => this.props.history.goBack()}>
               <i className='material-icons'>arrow_back</i>
             </Button>
             <h1 className='center'>{kid.name}</h1>
             <h2 className='center'>{`$${this.formatNumber(balance)}`}</h2>
             <Grid>
               <Cell size={1} desktopSize={3}>
-                <Button raised onClick={() => this.paymentClick(15)}>
+                <Button
+                  raised
+                  secondary={amount === 15}
+                  onClick={() => this.paymentClick(15)}
+                >
                   $15
                 </Button>
               </Cell>
               <Cell size={1} desktopSize={3}>
-                <Button raised onClick={() => this.paymentClick(10)}>
+                <Button
+                  raised
+                  secondary={amount === 10}
+                  onClick={() => this.paymentClick(10)}
+                >
                   $10
                 </Button>
               </Cell>
               <Cell size={1} desktopSize={3}>
-                <Button raised onClick={() => this.paymentClick(5)}>
+                <Button
+                  raised
+                  secondary={amount === 5}
+                  onClick={() => this.paymentClick(5)}
+                >
                   $5
                 </Button>
               </Cell>
               <Cell size={1} desktopSize={3}>
-                <Button raised onClick={() => this.paymentClick(1)}>
+                <Button
+                  raised
+                  secondary={amount === 1}
+                  onClick={() => this.paymentClick(1)}
+                >
                   $1
                 </Button>
               </Cell>
               <Cell size={1} desktopSize={3}>
-                <Button raised onClick={() => this.paymentClick('other')}>
+                <Button
+                  raised
+                  secondary={amount === 'other'}
+                  onClick={() => this.paymentClick('other')}
+                >
                   Other
                 </Button>
               </Cell>
               <Cell size={1} desktopSize={3}>
-                <Button raised onClick={() => this.paymentClick('withdraw')}>
+                <Button
+                  raised
+                  secondary={amount === 'withdraw'}
+                  onClick={() => this.paymentClick('withdraw')}
+                >
                   Withdraw
                 </Button>
               </Cell>
