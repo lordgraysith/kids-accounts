@@ -11,7 +11,7 @@ COPY package.json /app
 COPY yarn.lock /app
 RUN yarn
 COPY client/ /app/client/
-COPY server.js /app
+COPY server/ /app/server/
 
 RUN ls -la /app/*
 

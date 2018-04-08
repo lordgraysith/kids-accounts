@@ -7,6 +7,7 @@ function wrapAsync (asyncFunc) {
 }
 
 function objectifyProperties (obj) {
+  if (!obj) return obj
   return reduce(
     Object.keys(obj),
     (newObj, key) => {
