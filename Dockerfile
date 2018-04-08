@@ -12,6 +12,7 @@ COPY yarn.lock /app
 RUN yarn
 COPY client/ /app/client/
 COPY server/ /app/server/
+COPY config/ /app/config/
 
 RUN ls -la /app/*
 
