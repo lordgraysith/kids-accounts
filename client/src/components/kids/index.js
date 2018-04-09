@@ -19,7 +19,8 @@ class Kids extends Component {
   render () {
     const { kids, loading } = this.state
     return (
-      <div>
+      <div className='main-kids'>
+        <h1 className='center'>Kids Accounts</h1>
         {loading && <CircularProgress id='loading' />}
         {!loading &&
           <Grid>

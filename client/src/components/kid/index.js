@@ -155,6 +155,15 @@ class Kid extends Component {
                   Withdraw
                 </Button>
               </Cell>
+              <Cell size={1} desktopSize={3}>
+                <Button
+                  raised
+                  onClick={() =>
+                    this.props.history.push(`/kid/${kid.id}/accounts`)}
+                >
+                  Accounts
+                </Button>
+              </Cell>
             </Grid>
             {makingPayment &&
               <Paper className='payment-paper'>
