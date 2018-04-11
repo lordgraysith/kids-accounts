@@ -7,7 +7,7 @@
     "server-dev": "supervisor server/index.js",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "dev": "concurrently --kill-others-on-fail \"yarn server-dev\" \"yarn client\"",
-    "deploy": "now"
+    "deploy": "now && now alias && now ls kids-accounts && echo \"now scale <deployment> sfo 0 1\""
   },
   "main": "index.js",
   "license": "MIT",

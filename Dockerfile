@@ -14,7 +14,5 @@ COPY client/ /app/client/
 COPY server/ /app/server/
 COPY config/ /app/config/
 
-RUN ls -la /app/*
-
 EXPOSE 3000
 CMD ["yarn", "start"]
