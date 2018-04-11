@@ -7,7 +7,7 @@
     "server-dev": "supervisor server/index.js",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "dev": "concurrently --kill-others-on-fail \"yarn server-dev\" \"yarn client\"",
-    "deploy": "now -e PG_CONNECTION_STRING=@pg-connection -e NODE_ENV=production --docker --public"
+    "deploy": "now"
   },
   "main": "index.js",
   "license": "MIT",
