@@ -2,7 +2,8 @@ const express = require('express')
 const { getAllKids, getKidById } = require('../models/kids')
 const {
   getAccountByKidIdAndType,
-  getAccountsByKidId
+  getAccountsByKidId,
+  getAccountWithTransactionsById
 } = require('../models/accounts')
 const { accountTypes } = require('../models/account-types')
 const { wrapAsync } = require('../utils')
@@ -32,6 +33,14 @@ router.get(
     const kid = await getKidById(req.params.id)
     const accounts = await getAccountsByKidId(req.params.id)
     res.send(Object.assign({}, kid, { accounts }))
+  })
+)
+router.get(
+  '/:id/accounts/:accountId',
+  wrapAsync(async (req, res) => {
+    const kid = await getKidById(req.params.id)
+    const account = await getAccountWithTransactionsById(req.params.accountId)
+    res.send(Object.assign({}, kid, { account }))
   })
 )
 
