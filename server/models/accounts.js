@@ -42,7 +42,9 @@ async function getAccountWithTransactionsById (accountId) {
           ON t.account_id = a.id
         JOIN "kids-accounts".account_types at
           ON at.id = account_type_id
-      WHERE a.id = $1 limit 100`,
+      WHERE a.id = $1
+      order by created_date desc
+      limit 100`,
     [accountId]
   )
   const transactions = map(accounts, account => {

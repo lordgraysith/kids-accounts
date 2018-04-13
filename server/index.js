@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const kids = require('./routes/kids')
 const payments = require('./routes/payments')
+const transactions = require('./routes/transactions')
 const graphqlSchema = require('./graphql-schema')
 const graphqlContext = require('./graphql-context')
 
@@ -11,6 +12,7 @@ const port = process.env.PORT || 5000
 
 app.use(bodyParser.json())
 app.use('/api/kids', kids)
+app.use('/api/transactions', transactions)
 app.use('/api/payments', payments)
 app.use(
   '/graphql',
