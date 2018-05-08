@@ -112,7 +112,7 @@ class Account extends Component {
             <Button id='back' icon onClick={() => this.props.history.goBack()}>
               <i className='material-icons'>arrow_back</i>
             </Button>
-            <h1 className='center'>{kid.name}'s {name}</h1>
+            <h1 className='center header'>{kid.name}'s {name}</h1>
             <h2 className='center'>{`${this.formatNumber(balance)}`}</h2>
             <List>
               {map(transactions, t => {

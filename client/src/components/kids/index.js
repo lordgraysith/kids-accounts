@@ -28,10 +28,12 @@ class Kids extends Component {
               return (
                 <Cell key={kid.id} size={2} desktopSize={4}>
                   <Button
+                    className='kid-cell'
                     raised
                     onClick={() => this.navigate(`/kid/${kid.id}`)}
                   >
-                    {kid.name}
+                    <div>{kid.name}</div>
+                    <div>${kid.mainAccount.balance}</div>
                   </Button>
                 </Cell>
               )

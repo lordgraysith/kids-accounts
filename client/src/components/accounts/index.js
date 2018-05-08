@@ -34,7 +34,7 @@ class Accounts extends Component {
             <Button id='back' icon onClick={() => this.props.history.goBack()}>
               <i className='material-icons'>arrow_back</i>
             </Button>
-            <h1 className='center'>{kid.name}'s Accounts</h1>
+            <h1 className='center header'>{kid.name}'s Accounts</h1>
 
             <Grid>
               {accounts.map(account => {

@@ -1,4 +1,5 @@
 const express = require('express')
+const Bluebird = require('bluebird')
 const { getAllKids, getKidById } = require('../models/kids')
 const {
   getAccountByKidIdAndType,
@@ -13,7 +14,18 @@ router.get(
   '/',
   wrapAsync(async (req, res) => {
     const kids = await getAllKids()
-    res.send(kids)
+    const kidsWithMain = await Bluebird.reduce(
+      kids,
+      async (result, kid) => {
+        const mainAccount = await getAccountByKidIdAndType(
+          kid.id,
+          accountTypes.MAIN
+        )
+        return result.concat([Object.assign({}, kid, { mainAccount })])
+      },
+      []
+    )
+    res.send(kidsWithMain)
   })
 )
 router.get(

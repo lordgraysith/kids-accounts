@@ -98,7 +98,7 @@ class Kid extends Component {
             <Button id='back' icon onClick={() => this.props.history.goBack()}>
               <i className='material-icons'>arrow_back</i>
             </Button>
-            <h1 className='center'>{kid.name}</h1>
+            <h1 className='center header'>{kid.name}</h1>
             <h2 className='center'>{`$${this.formatNumber(balance)}`}</h2>
             <Grid>
               <Cell size={1} desktopSize={3}>
@@ -155,7 +155,7 @@ class Kid extends Component {
                   Withdraw
                 </Button>
               </Cell>
-              <Cell size={1} desktopSize={3}>
+              <Cell size={1} desktopSize={3} className='account-cell'>
                 <Button
                   raised
                   onClick={() =>
