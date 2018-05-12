@@ -2,7 +2,10 @@ const Bluebird = require('bluebird')
 const express = require('express')
 const { getAccountWithTransactionsById } = require('../models/accounts')
 const { accountTypes } = require('../models/account-types')
-const { createTransaction } = require('../models/transactions')
+const {
+  createTransaction,
+  sumAllTransactions
+} = require('../models/transactions')
 const { wrapAsync } = require('../utils')
 const router = express.Router()
 
@@ -14,6 +17,14 @@ router.post(
 
     const account = await getAccountWithTransactionsById(accountId)
     res.send({ account })
+  })
+)
+
+router.get(
+  '/sum',
+  wrapAsync(async (req, res) => {
+    const sum = await sumAllTransactions()
+    res.send(sum)
   })
 )
 

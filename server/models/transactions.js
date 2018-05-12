@@ -13,6 +13,17 @@ async function createTransaction (accountId, amount, description) {
   return result
 }
 
+async function sumAllTransactions () {
+  const result = await query(
+    `
+      SELECT SUM(amount) as amount
+      FROM "kids-accounts".transactions
+    `
+  )
+  return result[0].amount
+}
+
 module.exports = {
-  createTransaction
+  createTransaction,
+  sumAllTransactions
 }
