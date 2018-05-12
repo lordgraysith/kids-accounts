@@ -2,7 +2,11 @@
   "name": "kids-accounts-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:5000/"
+    }
+  },
   "dependencies": {
     "apollo-client": "^2.2.8",
     "autoprefixer": "7.1.6",
