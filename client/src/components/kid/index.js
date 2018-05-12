@@ -10,6 +10,7 @@ import {
 import { withRouter } from 'react-router'
 import { getKidById } from '../../stores/kids'
 import { makePayment } from '../../stores/payments'
+import { decimalChange } from '../../utils'
 import './index.css'
 
 class Kid extends Component {
@@ -31,8 +32,8 @@ class Kid extends Component {
       amount,
       makingPayment: true,
       paymentDescription: '',
-      otherAmount: undefined,
-      withdrawAmount: undefined
+      otherAmount: 0,
+      withdrawAmount: 0
     })
   }
 
@@ -64,14 +65,16 @@ class Kid extends Component {
   }
 
   otherAmountChange (value) {
+    const { otherAmount } = this.state
     this.setState({
-      otherAmount: value
+      otherAmount: decimalChange(value, otherAmount)
     })
   }
 
   withdrawAmountChange (value) {
+    const { withdrawAmount } = this.state
     this.setState({
-      withdrawAmount: value
+      withdrawAmount: decimalChange(value, withdrawAmount)
     })
   }
 
@@ -87,7 +90,9 @@ class Kid extends Component {
       makingPayment,
       loading,
       amount,
-      paymentDescription
+      paymentDescription,
+      withdrawAmount,
+      otherAmount
     } = this.state
     const balance = (kid && kid.mainAccount && kid.mainAccount.balance) || 0
     return (
@@ -173,7 +178,9 @@ class Kid extends Component {
                     type='number'
                     placeholder='Amount'
                     label='How much?'
-                    onChange={value => this.otherAmountChange(value)}
+                    value={this.formatNumber(otherAmount)}
+                    onChange={(value, event) =>
+                      this.otherAmountChange(value, event)}
                   />}
                 {amount === 'withdraw' &&
                   <TextField
@@ -181,7 +188,9 @@ class Kid extends Component {
                     type='number'
                     placeholder='Amount'
                     label='How much?'
-                    onChange={value => this.withdrawAmountChange(value)}
+                    value={this.formatNumber(withdrawAmount)}
+                    onChange={(value, event) =>
+                      this.withdrawAmountChange(value, event)}
                   />}
                 <TextField
                   id='payment-description'
