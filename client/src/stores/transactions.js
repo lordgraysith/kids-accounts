@@ -1,5 +1,6 @@
+import { secureFetch } from './secure-fetch'
 export async function createTransaction (accountId, amount, description) {
-  const res = await fetch('/api/transactions/', {
+  const res = await secureFetch('/api/transactions/', {
     body: JSON.stringify({
       accountId,
       amount,
@@ -14,7 +15,7 @@ export async function createTransaction (accountId, amount, description) {
 }
 
 export async function deleteTransaction (accountId) {
-  const res = await fetch('/api/transactions/', {
+  const res = await secureFetch('/api/transactions/', {
     body: JSON.stringify({
       accountId
     }),

@@ -3,7 +3,10 @@
   "alias": "kids-accounts",
   "env": {
     "PG_CONNECTION_STRING": "@pg-connection",
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "AUTH_SECRET": "@auth-secret",
+    "MICHAEL_PW": "@michael-pw",
+    "VELVET_PW": "@velvet-pw"
   },
   "type": "docker",
   "public": true,

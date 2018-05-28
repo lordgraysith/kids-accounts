@@ -4,6 +4,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const kids = require('./routes/kids')
 const payments = require('./routes/payments')
 const transactions = require('./routes/transactions')
+const auth = require('./routes/authenticate')
 const graphqlSchema = require('./graphql-schema')
 const graphqlContext = require('./graphql-context')
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json())
 app.use('/api/kids', kids)
 app.use('/api/transactions', transactions)
 app.use('/api/payments', payments)
+app.use('/api/auth', auth)
 app.use(
   '/graphql',
   bodyParser.json(),

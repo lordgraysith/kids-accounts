@@ -1,5 +1,6 @@
+import { secureFetch } from './secure-fetch'
 export async function makePayment (kidId, amount, description) {
-  const res = await fetch('/api/payments/', {
+  const res = await secureFetch('/api/payments/', {
     body: JSON.stringify({
       kidId,
       amount,

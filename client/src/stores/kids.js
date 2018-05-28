@@ -1,9 +1,10 @@
+import { secureFetch } from './secure-fetch'
 export async function getKidById (id) {
-  const res = await fetch(`/api/kids/${id}`)
-  return res.json()
+  const res = await secureFetch(`/api/kids/${id}`)
+  return await res.json()
 }
 
 export async function getAllKids () {
-  const res = await fetch('/api/kids')
-  return res.json()
+  const res = await secureFetch('/api/kids')
+  return await res.json()
 }

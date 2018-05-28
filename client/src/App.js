@@ -4,6 +4,7 @@ import Kids from './components/kids'
 import Kid from './components/kid'
 import Accounts from './components/accounts'
 import Account from './components/account'
+import Login from './components/login'
 import './App.css'
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             component={Account}
             exact
           />
+          <Route path='/login' component={Login} exact />
         </div>
       </Router>
     )

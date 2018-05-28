@@ -1,5 +1,6 @@
 const express = require('express')
 const Bluebird = require('bluebird')
+const auth = require('../middleware/auth')
 const { getAllKids, getKidById } = require('../models/kids')
 const {
   getAccountByKidIdAndType,
@@ -9,6 +10,7 @@ const {
 const { accountTypes } = require('../models/account-types')
 const { wrapAsync } = require('../utils')
 const router = express.Router()
+router.use(auth)
 
 router.get(
   '/',
