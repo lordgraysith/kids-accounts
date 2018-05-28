@@ -2,6 +2,9 @@ const config = require('config')
 const jwt = require('jsonwebtoken')
 
 function auth (req, res, next) {
+  if (config.get('nodeEnv') !== 'production') {
+    return next()
+  }
   const { headers } = req
   const { authtoken: authToken } = headers
   if (!authToken) {

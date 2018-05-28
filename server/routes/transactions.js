@@ -9,10 +9,10 @@ const {
 } = require('../models/transactions')
 const { wrapAsync } = require('../utils')
 const router = express.Router()
-router.use(auth)
 
 router.post(
   '/',
+  auth,
   wrapAsync(async (req, res) => {
     const { accountId, amount, description } = req.body
     await createTransaction(accountId, amount, description)

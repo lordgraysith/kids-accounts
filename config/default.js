@@ -1,4 +1,5 @@
 module.exports = {
+  nodeEnv: process.env.NODE_ENV,
   pg: {
     connectionString: process.env.PG_CONNECTION_STRING
   },
