@@ -1,7 +1,7 @@
 module.exports = {
-  nodeEnv: process.env.NODE_ENV,
+  nodeEnv: 'dev',
   pg: {
-    connectionString: process.env.PG_CONNECTION_STRING
+    connectionString: 'postgresql://postgres@localhost:40000/postgres'
   },
   authSecret: process.env.AUTH_SECRET,
   passwords: [

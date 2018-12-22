@@ -13,20 +13,20 @@ import { makePayment } from '../../stores/payments'
 import './index.css'
 
 class Kid extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     const { match } = props
     this.id = match.params.id
   }
   state = { kid: {}, loading: true }
 
-  componentWillMount () {
+  componentWillMount() {
     getKidById(this.id).then(kid => {
       this.setState({ kid, loading: false, makingPayment: false })
     })
   }
 
-  async paymentClick (amount) {
+  async paymentClick(amount) {
     this.setState({
       amount,
       makingPayment: true,
@@ -36,7 +36,7 @@ class Kid extends Component {
     })
   }
 
-  async confirmPayment (kidId, amount, description) {
+  async confirmPayment(kidId, amount, description) {
     this.setState({ loading: true, makingPayment: false })
     let paymentAmount = amount
     if (amount === 'other') {
@@ -53,35 +53,39 @@ class Kid extends Component {
     })
   }
 
-  unconfirm () {
+  unconfirm() {
     this.setState({ makingPayment: false, amount: undefined })
   }
 
-  descriptionChange (value) {
+  descriptionChange(value) {
     this.setState({
       paymentDescription: value
     })
   }
 
-  otherAmountChange (value) {
+  otherAmountChange(value) {
     this.setState({
       otherAmount: value
     })
   }
 
-  withdrawAmountChange (value) {
+  withdrawAmountChange(value) {
     this.setState({
       withdrawAmount: value
     })
   }
 
-  formatNumber (num) {
+  formatNumber(num) {
     if (typeof num === 'number') {
       return num.toFixed(2)
     } else return num
   }
 
-  render () {
+  navigate(path) {
+    this.props.history.push(path)
+  }
+
+  render() {
     const {
       kid,
       makingPayment,
@@ -90,16 +94,22 @@ class Kid extends Component {
       paymentDescription
     } = this.state
     const balance = (kid && kid.mainAccount && kid.mainAccount.balance) || 0
+    const accountId = kid && kid.mainAccount && kid.mainAccount.id
     return (
-      <div className='main-kid'>
-        {loading && <CircularProgress id='loading' />}
-        {!loading &&
+      <div className="main-kid">
+        {loading && <CircularProgress id="loading" />}
+        {!loading && (
           <div>
-            <Button id='back' icon onClick={() => this.props.history.goBack()}>
-              <i className='material-icons'>arrow_back</i>
+            <Button id="back" icon onClick={() => this.props.history.goBack()}>
+              <i className="material-icons">arrow_back</i>
             </Button>
-            <h1 className='center header'>{kid.name}</h1>
-            <h2 className='center'>{`$${this.formatNumber(balance)}`}</h2>
+            <h1 className="center header">{kid.name}</h1>
+            <h2
+              className="center clickme"
+              onClick={() =>
+                this.navigate(`/kid/${kid.id}/account/${accountId}`)
+              }
+            >{`$${this.formatNumber(balance)}`}</h2>
             <Grid>
               <Cell size={1} desktopSize={3}>
                 <Button
@@ -155,39 +165,42 @@ class Kid extends Component {
                   Withdraw
                 </Button>
               </Cell>
-              <Cell size={1} desktopSize={3} className='account-cell'>
+              <Cell size={1} desktopSize={3} className="account-cell">
                 <Button
                   raised
                   onClick={() =>
-                    this.props.history.push(`/kid/${kid.id}/accounts`)}
+                    this.props.history.push(`/kid/${kid.id}/accounts`)
+                  }
                 >
                   Accounts
                 </Button>
               </Cell>
             </Grid>
-            {makingPayment &&
-              <Paper className='payment-paper'>
-                {amount === 'other' &&
+            {makingPayment && (
+              <Paper className="payment-paper">
+                {amount === 'other' && (
                   <TextField
-                    id='other-amount'
-                    type='number'
-                    placeholder='Amount'
-                    label='How much?'
+                    id="other-amount"
+                    type="number"
+                    placeholder="Amount"
+                    label="How much?"
                     onChange={value => this.otherAmountChange(value)}
-                  />}
-                {amount === 'withdraw' &&
+                  />
+                )}
+                {amount === 'withdraw' && (
                   <TextField
-                    id='withdraw-amount'
-                    type='number'
-                    placeholder='Amount'
-                    label='How much?'
+                    id="withdraw-amount"
+                    type="number"
+                    placeholder="Amount"
+                    label="How much?"
                     onChange={value => this.withdrawAmountChange(value)}
-                  />}
+                  />
+                )}
                 <TextField
-                  id='payment-description'
+                  id="payment-description"
                   rows={1}
-                  placeholder='Enter a description'
-                  label='What is the purpose of this transaction?'
+                  placeholder="Enter a description"
+                  label="What is the purpose of this transaction?"
                   onChange={value => this.descriptionChange(value)}
                 />
                 <Grid>
@@ -195,18 +208,22 @@ class Kid extends Component {
                     <Button
                       raised
                       onClick={() =>
-                        this.confirmPayment(kid.id, amount, paymentDescription)}
+                        this.confirmPayment(kid.id, amount, paymentDescription)
+                      }
                     >
                       Confirm
                     </Button>
-                  </Cell><Cell size={2}>
+                  </Cell>
+                  <Cell size={2}>
                     <Button raised onClick={() => this.unconfirm()}>
                       Cancel
                     </Button>
                   </Cell>
                 </Grid>
-              </Paper>}
-          </div>}
+              </Paper>
+            )}
+          </div>
+        )}
       </div>
     )
   }
