@@ -16,7 +16,7 @@ async function createTransaction (accountId, amount, description) {
 async function sumAllTransactions () {
   const result = await query(
     `
-      SELECT SUM(amount) as amount
+      SELECT SUM(amount)::numeric as amount
       FROM "kids-accounts".transactions
     `
   )
