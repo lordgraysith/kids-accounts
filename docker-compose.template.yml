@@ -13,7 +13,7 @@ services:
       NODE_ENV: 'production'
   nginx: 
     image: nginx:1.15-alpine
-    container_name: production_nginx
+    container_name: nginx
     restart: unless-stopped
     volumes:
       - ./data/nginx:/etc/nginx/conf.d
