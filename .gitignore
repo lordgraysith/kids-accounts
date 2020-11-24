@@ -4,3 +4,5 @@ local*
 *.log
 backup.lzo
 .DS_Store
+docker-compose.yml
+replace-secrets.sh
