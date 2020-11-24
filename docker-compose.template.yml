@@ -11,6 +11,8 @@ services:
       AUTH_SECRET: 'AUTHSECRETVAL'
       PG_CONNECTION_STRING: 'PGCONNSTRINGVAL'
       NODE_ENV: 'production'
+    ports:
+      - 3000:3000
   nginx: 
     image: nginx:1.15-alpine
     container_name: nginx
