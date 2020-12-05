@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
       return res.status(401).send({ message: 'Invalid Passcode' })
     }
     const authToken = jwt.sign({ username }, config.get('authSecret'), {
-      expiresIn: '6 months'
+      expiresIn: '180d'
     })
     res.send({ authToken })
   } catch (ex) {
